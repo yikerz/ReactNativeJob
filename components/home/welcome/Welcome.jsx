@@ -4,7 +4,6 @@ import { TextInput } from "react-native-gesture-handler";
 import styles from "./welcome.style";
 
 const Welcome = () => {
-  // 24. Create router
   const router = useRouter();
 
   return (
