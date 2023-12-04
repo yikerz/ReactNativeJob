@@ -3,12 +3,18 @@ import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react
 import styles from "./popularjobs.style";
 
 import { COLORS, SIZES } from "../../../constants";
+import useFetch from "../../../hook/useFetch";
 import PopularJobCard from "../../cards/popular/PopularJobCard";
 
 const PopularJobs = () => {
   const router = useRouter();
-  const isLoading = false;
-  const error = false;
+  // 51. Use useFetch to get data, isLoading, error and refetch
+  const { data, isLoading, error, refetch } = useFetch(
+    'search', {
+      query: 'React developer',
+      num_pages: 1
+    }
+  );
 
   return (
     <View style={styles.container}>
@@ -25,9 +31,10 @@ const PopularJobs = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList 
-            data={[1, 2, 3, 4]}
-            keyExtractor={item => item}
-            contentContainerStyle={{ columnGap: SIZES.small }}
+            // 56. Pass the data to the FlatList
+            data={data}
+            keyExtractor={item => item.job_id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
             renderItem={({item}) => (
               <PopularJobCard 
