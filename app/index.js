@@ -11,7 +11,6 @@ import { COLORS, SIZES, icons, images } from "../constants";
 
 export default function Home() {
   const router = useRouter();
-  // 95. Create searchTerm state
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
@@ -41,7 +40,6 @@ export default function Home() {
             padding: SIZES.medium,
           }}
         >
-          {/* 96. Add new props to Welcome component */}
           <Welcome
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}

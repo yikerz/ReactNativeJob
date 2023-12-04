@@ -19,8 +19,6 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
 
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
-          {/* 97. Add props to search bar */}
-          {/* 99. Fix bug: onChangeText */}
           <TextInput 
             style={styles.searchInput} 
             value={searchTerm}
@@ -28,7 +26,6 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
             placeholder="What are you looking for?"
           />
         </View>
-        {/* 97. Add handleClick to onPress */}
         <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}

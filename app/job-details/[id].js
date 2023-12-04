@@ -28,6 +28,12 @@ const JobDetails = () => {
     job_id: params.id,
   });
 
+  const onRefresh = () => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  };
+
   const displayTabContent = () => {
     switch (activeTab) {
       case "Qualifications":
@@ -78,7 +84,7 @@ const JobDetails = () => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={() => {}} />
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
           {isLoading ? (

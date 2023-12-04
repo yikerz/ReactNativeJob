@@ -1,4 +1,5 @@
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
 import styles from "./popularjobs.style";
 
@@ -8,6 +9,7 @@ import PopularJobCard from "../../cards/popular/PopularJobCard";
 
 const PopularJobs = () => {
   const router = useRouter();
+  const [selectedJob, setSelectedJob] = useState();
   const { data, isLoading, error, refetch } = useFetch(
     'search', {
       query: 'React developer',
@@ -37,6 +39,11 @@ const PopularJobs = () => {
             renderItem={({item}) => (
               <PopularJobCard 
                 item={item}
+                selectedJob={selectedJob}
+                handlePress={() => {
+                  router.push(`/job-details/${item.job_id}`);
+                  setSelectedJob(item.job_id);
+                }}
               />
             )}
           />
