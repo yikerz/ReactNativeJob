@@ -1,20 +1,18 @@
 import { Stack, useRouter } from "expo-router";
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView, ScrollView, Text } from "react-native";
+import { NearbyJobs, PopularJobs, Welcome } from "../components";
 import { COLORS } from "../constants";
 
 export default function Home() {
-  // 10. Create useRouter hook
   const router = useRouter();
 
   return (
-    // 11. Wrap everything inside SafeAreaView
     <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: COLORS.lightWhite,
       }}
     >
-      {/* 12. Config stack title */}
       <Stack.Screen
         options={{
           headerTitle: "",
@@ -24,6 +22,13 @@ export default function Home() {
           headerShadowVisible: false,
         }}
       />
+      {/* 13. Create ScrollView */}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* 16. Wrap all home components */}
+        <Welcome />
+        <PopularJobs />
+        <NearbyJobs />
+      </ScrollView>
     </SafeAreaView>
   );
 }
