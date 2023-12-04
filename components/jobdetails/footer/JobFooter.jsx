@@ -1,4 +1,3 @@
-// 93. Create JobFooter component
 import { Image, Linking, Text, TouchableOpacity, View } from "react-native";
 import { icons } from "../../../constants";
 import styles from "./footer.style";
@@ -14,7 +13,6 @@ const JobFooter = ({ url }) => {
         />
       </TouchableOpacity>
 
-      {/* 94. Link to job page */}
       <TouchableOpacity 
         style={styles.applyBtn}
         onPress={() => Linking.openURL(url)}

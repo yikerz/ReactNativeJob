@@ -110,7 +110,7 @@ const JobDetails = () => {
             </View>
           )}
         </ScrollView>
-        {/* 92. Add footer at the end of the page */}
+
         <JobFooter
           url={
             data[0]?.job_google_link ??

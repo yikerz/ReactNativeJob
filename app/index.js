@@ -1,4 +1,5 @@
 import { Stack, useRouter } from "expo-router";
+import { useState } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import {
   NearbyJobs,
@@ -10,6 +11,8 @@ import { COLORS, SIZES, icons, images } from "../constants";
 
 export default function Home() {
   const router = useRouter();
+  // 95. Create searchTerm state
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <SafeAreaView
@@ -38,7 +41,12 @@ export default function Home() {
             padding: SIZES.medium,
           }}
         >
-          <Welcome />
+          {/* 96. Add new props to Welcome component */}
+          <Welcome
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            handleClick={() => router.push(`/search/${searchTerm}`)}
+          />
           <PopularJobs />
           <NearbyJobs />
         </View>

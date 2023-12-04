@@ -1,13 +1,12 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
+import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SIZES, icons } from "../../../constants";
 import styles from "./welcome.style";
 
 const jobTypes = ["Full-time", "Part-time", "Contractor"];
 
-const Welcome = () => {
+const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState("Full-time");
 
@@ -20,13 +19,17 @@ const Welcome = () => {
 
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
-          <TextInput style={styles.searchInput} 
-            value=""
-            onChange={() => {}}
+          {/* 97. Add props to search bar */}
+          {/* 99. Fix bug: onChangeText */}
+          <TextInput 
+            style={styles.searchInput} 
+            value={searchTerm}
+            onChangeText={(text) => setSearchTerm(text)}
             placeholder="What are you looking for?"
           />
         </View>
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        {/* 97. Add handleClick to onPress */}
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}
             style={styles.searchBtnImage}
