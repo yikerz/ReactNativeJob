@@ -9,7 +9,6 @@ const jobTypes = ["Full-time", "Part-time", "Contractor"];
 
 const Welcome = () => {
   const router = useRouter();
-  // 33. Use useState to track on selected job type
   const [activeJobType, setActiveJobType] = useState("Full-time");
 
   return (
@@ -27,7 +26,6 @@ const Welcome = () => {
             placeholder="What are you looking for?"
           />
         </View>
-        {/* 31. Create search button */}
         <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
           <Image
             source={icons.search}
@@ -36,7 +34,6 @@ const Welcome = () => {
         </TouchableOpacity>
       </View>
 
-      {/* 32. Create job type buttons using FlatList */}
       <View style={styles.tabsContainer}>
         <FlatList 
           data={jobTypes}
@@ -46,7 +43,6 @@ const Welcome = () => {
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.tab(activeJobType, item)} 
               onPress={() => {
-                // 34. Set active job type and navigate to new page
                 setActiveJobType(item);
                 router.push(`/search/${item}`);
               }}>
