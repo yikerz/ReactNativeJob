@@ -1,10 +1,16 @@
 import { useRouter } from "expo-router";
-import { Text, View } from "react-native";
+import { useState } from "react";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { SIZES, icons } from "../../../constants";
 import styles from "./welcome.style";
+
+const jobTypes = ["Full-time", "Part-time", "Contractor"];
 
 const Welcome = () => {
   const router = useRouter();
+  // 33. Use useState to track on selected job type
+  const [activeJobType, setActiveJobType] = useState("Full-time");
 
   return (
     <View>
@@ -15,8 +21,39 @@ const Welcome = () => {
 
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
-          <TextInput style={styles.searchInput} />
+          <TextInput style={styles.searchInput} 
+            value=""
+            onChange={() => {}}
+            placeholder="What are you looking for?"
+          />
         </View>
+        {/* 31. Create search button */}
+        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+          <Image
+            source={icons.search}
+            style={styles.searchBtnImage}
+          />
+        </TouchableOpacity>
+      </View>
+
+      {/* 32. Create job type buttons using FlatList */}
+      <View style={styles.tabsContainer}>
+        <FlatList 
+          data={jobTypes}
+          keyExtractor={item => item}
+          contentContainerStyle={{ columnGap: SIZES.small }}
+          horizontal
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.tab(activeJobType, item)} 
+              onPress={() => {
+                // 34. Set active job type and navigate to new page
+                setActiveJobType(item);
+                router.push(`/search/${item}`);
+              }}>
+              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
+            </TouchableOpacity>
+          )}
+        />
       </View>
     </View>
   )
