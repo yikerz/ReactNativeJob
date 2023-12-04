@@ -8,7 +8,6 @@ import PopularJobCard from "../../cards/popular/PopularJobCard";
 
 const PopularJobs = () => {
   const router = useRouter();
-  // 51. Use useFetch to get data, isLoading, error and refetch
   const { data, isLoading, error, refetch } = useFetch(
     'search', {
       query: 'React developer',
@@ -31,7 +30,6 @@ const PopularJobs = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList 
-            // 56. Pass the data to the FlatList
             data={data}
             keyExtractor={item => item.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}

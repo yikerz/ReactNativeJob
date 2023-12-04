@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-// Bug fixing: no need curly brackets
 const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,8 +20,6 @@ const useFetch = (endpoint, query) => {
     setIsLoading(true);
     try {
       const response = await axios.request(options);
-      console.log(response.data.data);
-      // Bug fixing: forget to set data
       setData(response.data.data);
       setIsLoading(false);
     } catch (error) {

@@ -1,28 +1,29 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { checkImageURL } from '../../../utils';
 import styles from './popularjobcard.style';
 
 const PopularJobCard = ({ selectedJob, item }) => {
   return (
-    // 52. JobCard is a TouchableOpacity
     <TouchableOpacity 
       style={styles.container(selectedJob, item)}
       onPress={() => {}}
     >
-      {/* 53. Clickable logo */}
       <TouchableOpacity
         style={styles.logoContainer(selectedJob, item)}
       >
        <Image 
-        source={{ uri: item.employer_logo }}
+      //  58. Check image URL exists
+        source={{ uri: checkImageURL(item.employer_logo) ? 
+          item.employer_logo : 
+          "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
+        }}
         resizeMode="contain"
         style={styles.logoImage}
        />
       </TouchableOpacity>
-      {/* 54. Display company name */}
       <Text style={styles.companyName} numberOfLines={1}>{item.employer_name}</Text>
 
       <View style={styles.infoContainer}>
-        {/* 55. Display job title and country */}
         <Text style={styles.jobName(selectedJob, item)} numberOfLines={1}>
           {item.job_title}
         </Text>
