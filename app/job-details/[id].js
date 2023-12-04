@@ -13,6 +13,7 @@ import useFetch from "../../hook/useFetch";
 import { useState } from "react";
 import { ScreenHeaderBtn } from "../../components";
 import JobAbout from "../../components/jobdetails/about/JobAbout";
+import JobFooter from "../../components/jobdetails/footer/JobFooter";
 import JobTabs from "../../components/jobdetails/jobtabs/JobTabs";
 import Specifics from "../../components/jobdetails/specifics/Specifics";
 import { COLORS, SIZES, icons } from "../../constants";
@@ -109,6 +110,13 @@ const JobDetails = () => {
             </View>
           )}
         </ScrollView>
+        {/* 92. Add footer at the end of the page */}
+        <JobFooter
+          url={
+            data[0]?.job_google_link ??
+            "https://careers.google.com/jobs/results"
+          }
+        />
       </>
     </SafeAreaView>
   );
