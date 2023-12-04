@@ -1,2 +1,3 @@
-/* 8. Module setup */
-export {};
+import { COLORS } from "./theme";
+
+export { COLORS };
