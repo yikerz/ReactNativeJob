@@ -1,4 +1,3 @@
-// 63. Create page for endpoint job-details/[id]
 import { Stack, useGlobalSearchParams, useRouter } from "expo-router";
 import {
   ActivityIndicator,
@@ -13,6 +12,7 @@ import useFetch from "../../hook/useFetch";
 
 import { useState } from "react";
 import { ScreenHeaderBtn } from "../../components";
+import JobAbout from "../../components/jobdetails/about/JobAbout";
 import JobTabs from "../../components/jobdetails/jobtabs/JobTabs";
 import Specifics from "../../components/jobdetails/specifics/Specifics";
 import { COLORS, SIZES, icons } from "../../constants";
@@ -27,7 +27,6 @@ const JobDetails = () => {
     job_id: params.id,
   });
 
-  // 85. Define displayTabContent with switch statements (only return for qualification)
   const displayTabContent = () => {
     switch (activeTab) {
       case "Qualifications":
@@ -38,6 +37,10 @@ const JobDetails = () => {
           />
         );
       case "About":
+        // 89. Return JobAbout component
+        return (
+          <JobAbout info={data[0].job_description ?? "No data provided"} />
+        );
       case "Responsibilities":
       default:
         break;
@@ -97,7 +100,6 @@ const JobDetails = () => {
                 setActiveTab={setActiveTab}
               />
 
-              {/* 84. Call displayTabContent to return components */}
               {displayTabContent()}
             </View>
           )}
