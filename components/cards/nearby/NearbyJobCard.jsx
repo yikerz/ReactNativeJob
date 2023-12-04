@@ -1,4 +1,3 @@
-// 62. From PopularJobCard with modification
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { checkImageURL } from '../../../utils';
 import styles from './nearbyjobcard.style';
