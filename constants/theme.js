@@ -19,4 +19,10 @@ const SIZES = {
   xxLarge: 32,
 };
 
-export { COLORS, SIZES };
+const FONT = {
+  regular: "DMRegular",
+  medium: "DMMedium",
+  bold: "DMBold",
+};
+
+export { COLORS, FONT, SIZES };

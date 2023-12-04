@@ -1,12 +1,12 @@
 import { Stack, useRouter } from "expo-router";
-import { SafeAreaView, ScrollView } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import {
   NearbyJobs,
   PopularJobs,
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
-import { COLORS, icons, images } from "../constants";
+import { COLORS, SIZES, icons, images } from "../constants";
 
 export default function Home() {
   const router = useRouter();
@@ -22,8 +22,6 @@ export default function Home() {
         options={{
           headerTitle: "",
           headerStyle: { backgroundColor: COLORS.lightWhite },
-          // 18. headerLeft and headerRight should return ScreenHeaderBtn
-          // 23. Pass props to button components
           headerLeft: () => (
             <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
           ),
@@ -34,9 +32,16 @@ export default function Home() {
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Welcome />
-        <PopularJobs />
-        <NearbyJobs />
+        <View
+          style={{
+            flex: 1,
+            padding: SIZES.medium,
+          }}
+        >
+          <Welcome />
+          <PopularJobs />
+          <NearbyJobs />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
