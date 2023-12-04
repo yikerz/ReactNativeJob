@@ -14,19 +14,35 @@ import useFetch from "../../hook/useFetch";
 import { useState } from "react";
 import { ScreenHeaderBtn } from "../../components";
 import JobTabs from "../../components/jobdetails/jobtabs/JobTabs";
+import Specifics from "../../components/jobdetails/specifics/Specifics";
 import { COLORS, SIZES, icons } from "../../constants";
-// 78.1 Create tab list
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
 const JobDetails = () => {
   const params = useGlobalSearchParams();
   const router = useRouter();
   const [refreshing, setRefreshing] = useState(false);
-  // 78.2 Create activeTab state
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const { data, isLoading, error, refetch } = useFetch("job-details", {
     job_id: params.id,
   });
+
+  // 85. Define displayTabContent with switch statements (only return for qualification)
+  const displayTabContent = () => {
+    switch (activeTab) {
+      case "Qualifications":
+        return (
+          <Specifics
+            activeTab={activeTab}
+            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
+          />
+        );
+      case "About":
+      case "Responsibilities":
+      default:
+        break;
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -80,6 +96,9 @@ const JobDetails = () => {
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
               />
+
+              {/* 84. Call displayTabContent to return components */}
+              {displayTabContent()}
             </View>
           )}
         </ScrollView>
