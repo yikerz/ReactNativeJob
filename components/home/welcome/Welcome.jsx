@@ -1,4 +1,3 @@
-// 14. Create Welcome component
 import { Text, View } from "react-native"
 
 const Welcome = () => {

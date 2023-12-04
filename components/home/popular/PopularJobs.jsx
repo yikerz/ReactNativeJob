@@ -1,4 +1,3 @@
-// 14. Create PopularJobs component
 import { Text, View } from "react-native"
 
 const PopularJobs = () => {

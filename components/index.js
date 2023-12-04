@@ -1,6 +1,6 @@
-// 15. Export all home components
+import ScreenHeaderBtn from "./header/ScreenHeaderBtn";
 import NearbyJobs from "./home/nearby/NearbyJobs";
 import PopularJobs from "./home/popular/PopularJobs";
 import Welcome from "./home/welcome/Welcome";
 
-export { NearbyJobs, PopularJobs, Welcome };
+export { NearbyJobs, PopularJobs, ScreenHeaderBtn, Welcome };
