@@ -1,4 +1,3 @@
-// 60. Copy from PopularJobs with modification
 import { useRouter } from "expo-router";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import styles from "./nearbyjobs.style";
@@ -30,9 +29,12 @@ const NearbyJobs = () => {
         ) : error ? (
           <Text>Something went wrong</Text>
         ) : (
-          // 61. Use map function instead
           data?.map((job) => (
-            <NearbyJobCard />
+            <NearbyJobCard 
+              job={job}
+              key={`nearby-job-${job?.job_id}`}
+              handleNavigate={() => router.push(`/job-details/${job.job_id}`) }
+            />
           ))
         )}
       </View>
