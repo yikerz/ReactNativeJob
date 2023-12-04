@@ -3,7 +3,6 @@ import styles from "./about.style";
 
 const JobAbout = ({ info }) => {
   return (
-    // 90. Create structure
     <View style={styles.container}>
       <Text style={styles.headText}>About the job:</Text>
       <View style={styles.contentBox}>

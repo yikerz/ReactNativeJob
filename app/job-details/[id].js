@@ -37,11 +37,16 @@ const JobDetails = () => {
           />
         );
       case "About":
-        // 89. Return JobAbout component
         return (
           <JobAbout info={data[0].job_description ?? "No data provided"} />
         );
       case "Responsibilities":
+        return (
+          <Specifics
+            activeTab={activeTab}
+            points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
+          />
+        );
       default:
         break;
     }
