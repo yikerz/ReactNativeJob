@@ -1,5 +1,3 @@
-// 73. Create Company component
-
 import { Image, Text, View } from "react-native"
 import { icons } from "../../../constants"
 import { checkImageURL } from "../../../utils"
@@ -7,7 +5,6 @@ import styles from "./company.style"
 
 const Company = ({ companyLogo, jobTitle, companyName, location }) => {
   return (
-    // 74. Create structure
     <View style={styles.container}>
       <View style={styles.logoBox}>
         <Image 
@@ -20,15 +17,12 @@ const Company = ({ companyLogo, jobTitle, companyName, location }) => {
         />
       </View>
 
-      {/* 75. Display job title below logo */}
       <View style={styles.jobTitleBox}>
         <Text style={styles.jobTitle}>{jobTitle}</Text>
       </View>
 
-      {/* 76. Display company name below job title */}
       <View style={styles.companyInfoBox}>
         <Text style={styles.companyName}>{companyName} / </Text>
-        {/* 77. Display location icon and location */}
         <View style={styles.locationBox}>
           <Image 
             source={icons.location}
