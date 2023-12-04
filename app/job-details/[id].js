@@ -1,25 +1,30 @@
 // 63. Create page for endpoint job-details/[id]
 import { Stack, useGlobalSearchParams, useRouter } from "expo-router";
-import { SafeAreaView } from "react-native";
+import {
+  ActivityIndicator,
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import useFetch from "../../hook/useFetch";
 
+import { useState } from "react";
 import { ScreenHeaderBtn } from "../../components";
-import { COLORS, icons } from "../../constants";
+import { COLORS, SIZES, icons } from "../../constants";
 
 const JobDetails = () => {
-  // 64. Get path variable id
   const params = useGlobalSearchParams();
-  // 65. Instantiate useRouter hook
   const router = useRouter();
-  // 66. Fetch data for job details by job id
+  // 70. Create refresing state
+  const [refreshing, setRefreshing] = useState(false);
   const { data, isLoading, error, refetch } = useFetch("job-details", {
     job_id: params.id,
   });
 
   return (
-    // 67. Page should render SafeAreaView component
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-      {/* 68. Create header for the page */}
       <Stack.Screen
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
@@ -38,6 +43,36 @@ const JobDetails = () => {
           ),
         }}
       />
+
+      <>
+        {/* 69. Create ScrollView for the main view */}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={() => {}} />
+          }
+        >
+          {/* 71. Conditional rendering */}
+          {isLoading ? (
+            <ActivityIndicator size="large" color={COLORS.primary} />
+          ) : error ? (
+            <Text>Something went wrong</Text>
+          ) : data.length === 0 ? (
+            <Text>No data</Text>
+          ) : (
+            <View
+              style={{
+                padding: SIZES.medium,
+                paddingBottom: 100,
+              }}
+            >
+              {/* 72. Display Company and JobTabs components */}
+              <Company />
+              <JobTabs />
+            </View>
+          )}
+        </ScrollView>
+      </>
     </SafeAreaView>
   );
 };
