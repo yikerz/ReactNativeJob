@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from "react-native";
+import Company from "../../components/jobdetails/company/Company";
 import useFetch from "../../hook/useFetch";
 
 import { useState } from "react";
@@ -17,7 +18,6 @@ import { COLORS, SIZES, icons } from "../../constants";
 const JobDetails = () => {
   const params = useGlobalSearchParams();
   const router = useRouter();
-  // 70. Create refresing state
   const [refreshing, setRefreshing] = useState(false);
   const { data, isLoading, error, refetch } = useFetch("job-details", {
     job_id: params.id,
@@ -45,14 +45,12 @@ const JobDetails = () => {
       />
 
       <>
-        {/* 69. Create ScrollView for the main view */}
         <ScrollView
           showsVerticalScrollIndicator={false}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={() => {}} />
           }
         >
-          {/* 71. Conditional rendering */}
           {isLoading ? (
             <ActivityIndicator size="large" color={COLORS.primary} />
           ) : error ? (
@@ -66,9 +64,13 @@ const JobDetails = () => {
                 paddingBottom: 100,
               }}
             >
-              {/* 72. Display Company and JobTabs components */}
-              <Company />
-              <JobTabs />
+              <Company
+                companyLogo={data[0].employer_logo}
+                jobTitle={data[0].job_title}
+                companyName={data[0].employer_name}
+                location={data[0].job_country}
+              />
+              {/* <JobTabs /> */}
             </View>
           )}
         </ScrollView>
